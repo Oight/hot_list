@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>实时热搜</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="container" id="app">
+        <div class="glass-card">
+            <h2>B站实时热搜</h2>
+            <div class="content-wrapper">
+                <div class="loading" v-if="loading">加载中...</div>
+                <div class="error" v-else-if="errorMsg">{{ errorMsg }}</div>
+                <ul class="hot-list" v-else>
+                    <li v-for="item in hotList" :key="item.id" class="hot-item">
+                        <span class="rank">{{ item.id }}</span>
+                        <!-- 只给关键词包裹跳转链接 -->
+                        <a :href="`https://search.bilibili.com/all?keyword=${encodeURIComponent(item.keyword)}`"
+                            target="_blank" class="hot-link">
+                            <span class="keyword">{{ item.keyword }}</span>
+                        </a>
+                    </li>
+                </ul>
+                <button class="refresh-btn" @click="fetchHotData">手动刷新</button>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

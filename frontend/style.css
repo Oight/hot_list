@@ -1,0 +1,147 @@
+:root {
+    --blur: 8px;
+    --card-bg: rgba(255, 255, 255, 0.25);
+    --card-border: rgba(255, 255, 255, 0.4);
+    --card-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+    --radius: 16px;
+    --text-color: #f8f9fa;
+    --text-gray: #e2e8f0;
+    --rank-bg: rgba(255, 255, 255, 0.6);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("https://picsum.photos/id/1039/1920/1080") center/cover fixed;
+    padding: 2rem;
+}
+
+.glass-card {
+    width: 100%;
+    max-width: 600px;
+    padding: 2.5rem;
+    background: var(--card-bg);
+    backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+    color: var(--text-color);
+}
+
+.glass-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.content-wrapper {
+    width: 100%;
+}
+
+.loading,
+.error {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.loading {
+    color: var(--text-gray);
+}
+
+.error {
+    color: #fecdd3;
+}
+
+.hot-list {
+    list-style: none;
+    margin: 1.5rem 0;
+}
+
+.hot-item {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    line-height: 1.6;
+}
+
+.rank {
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    background: var(--rank-bg);
+    color: #2c3e50;
+    border-radius: 50%;
+    margin-right: 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.keyword {
+    flex: 1;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.heat {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin-left: 0.5rem;
+}
+
+.refresh-btn {
+    padding: 0.8rem 2rem;
+    background: #fff;
+    color: #2c3e50;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: block;
+    margin: 0 auto;
+}
+
+.refresh-btn:hover {
+    background: #f1f1f1;
+}
+
+/* ✅✅✅ 核心修改：彻底清除a标签所有默认样式 无任何下划线+无蓝色字体 百分百生效 */
+.hot-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-decoration: none !important;
+    /* 强制去除下划线 核心！优先级拉满 无残留 */
+    color: inherit !important;
+    /* 强制继承父级颜色 无蓝色/紫色字体 */
+    cursor: pointer;
+}
+
+/* 访问过的链接也不变色 */
+.hot-link:visited {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+/* 鼠标悬浮时 只有关键词高亮变白，依然无下划线 */
+.hot-link:hover {
+    text-decoration: none !important;
+}
+
+.hot-link:hover .keyword {
+    color: #ffffff;
+}
